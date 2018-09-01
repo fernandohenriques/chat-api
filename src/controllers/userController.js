@@ -1,5 +1,5 @@
 const userActions = {
-  get: (req, res, next) => {
+  get: (req, res) => {
     res.status(200).send('Requisição recebida com sucesso!');
   },
 };
