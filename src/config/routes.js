@@ -12,7 +12,7 @@ router.get('/', (req, res, next) => {
   });
 });
 
-router.get('/user', userController.get);
+router.get('/users', userController.get);
 
 
 module.exports = router;
