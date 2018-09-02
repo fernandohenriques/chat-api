@@ -13,6 +13,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/users', userController.get);
+router.post('/users', userController.post);
 
 
 module.exports = router;
