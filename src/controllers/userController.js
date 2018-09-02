@@ -1,7 +1,10 @@
+const R = require('ramda');
+const jwt = require('jsonwebtoken');
+const secrets = require('../config/secrets');
 const User = require('../models/User');
 const userHelper = require('../helpers/userHelper');
 
-const { printUserResult, getFullName } = userHelper;
+const { printUserResult, loginResult, getFullName } = userHelper;
 
 const userActions = {
 
@@ -27,6 +30,12 @@ const userActions = {
     const id = req.params.id;
     const message = (user) => JSON.stringify({'message': `User ${getFullName(user)} was deleted.`});
     User.findByIdAndRemove(id, (err, user) => printUserResult(res, err, message(user)));
+  },
+
+  login: (req, res) => {
+    const user = req.body.user;
+    const showUser = ['firstName','secondName','email','avatar'];
+    User.findOne(user, (err, user) => loginResult(res, err, R.pick(showUser, user), jwt, secrets));
   },
 
 };

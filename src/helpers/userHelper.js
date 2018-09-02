@@ -8,6 +8,15 @@ const printUserResult = (response, err, json, notFoundOption = false) => {
     response.status(statusSuccess).send(json);
 };
 
+const loginResult = (response, err, user, jwt, secrets) => {
+  if (err || !user)
+    response.status(401).send({ 'error': 'Wrong credentials!' });
+  else {
+    const token = jwt.sign({ 'userId': user._id }, secrets.jwt_key, { expiresIn: '2 days' });
+    response.status(200).send({ 'token': token, 'user': user });
+  }
+}
+
 const getFullName = (user) => `${user.firstName} ${user.secondName}`;
 
-module.exports = { printUserResult, getFullName };
+module.exports = { printUserResult, loginResult, getFullName };
