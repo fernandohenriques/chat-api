@@ -14,6 +14,7 @@ router.get('/', (req, res) => {
 
 router.get('/users', userController.get);
 router.post('/users', userController.post);
+router.put('/users/:id', userController.put);
 
 
 module.exports = router;

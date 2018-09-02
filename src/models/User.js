@@ -7,7 +7,7 @@ const UserSchema = new mongoose.Schema({
   password: String,
   avatar: String,
   created_at: { type: Date, default: Date.now },
-  updated_at: { type: Date, default: Date.now }
+  updated_at: { type: Date, default: Date.now },
 });
 
 UserSchema.pre('save', (next) => {
