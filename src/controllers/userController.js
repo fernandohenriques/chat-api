@@ -1,26 +1,37 @@
 const User = require('../models/User');
 
-const printResult = (response, err, user) => {
+const printUserResult = (response, err, user, notFoundOption = false) => {
   if (err)
     response.status(422).send({ 'error': err.message });
   else
-    response.status(200).send(user);
+    if (notFoundOption && !user)
+      response.status(404).send({ 'error': 'No user found.' });
+    else
+      response.status(200).send(user);
 };
 
 const userActions = {
 
-  get: (req, res) => {
+  getAll: (req, res) => {
     res.status(200).send('Requisição recebida com sucesso!');
+  },
+
+  getOne: (req, res) => {
+    User.findById(req.params.id, (err, user) => printUserResult(res, err, user));
   },
 
   post: (req, res) => {
     const user = new User(req.body);
-    user.save((err, user) => printResult(res, err, user));
+    user.save((err, user) => printUserResult(res, err, user));
   },
 
   put: (req, res) => {
     const user = { '_id': req.params.id };
-    User.findByIdAndUpdate(user, req.body, { new: true }, (err, user) => printResult(res, err, user));
+    User.findByIdAndUpdate(user, req.body, { new: true }, (err, user) => printUserResult(res, err, user));
+  },
+
+  delete: (req, res) => {]
+
   },
 };
 

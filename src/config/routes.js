@@ -12,7 +12,8 @@ router.get('/', (req, res) => {
   });
 });
 
-router.get('/users', userController.get);
+router.get('/users', userController.getAll);
+router.get('/users/:id', userController.getOne);
 router.post('/users', userController.post);
 router.put('/users/:id', userController.put);
 
