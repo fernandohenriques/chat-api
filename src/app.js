@@ -3,11 +3,9 @@ const bodyParser = require('body-parser');
 const app = express();
 const db = require('./config/database');
 const routes = require('./config/routes');
-const jwtAuth = require('./middlewares/jwtAuth');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(jwtAuth);
 app.use('/', routes);
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
