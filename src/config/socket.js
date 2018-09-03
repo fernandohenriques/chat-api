@@ -9,6 +9,10 @@ const socket = (io) => {
     socket.on('message', function(msg) {
       console.log('message: '+ msg);
     });
+
+    socket.on('connect', (id) => {
+      console.log('id:' + id);
+    });
   });
 
 };

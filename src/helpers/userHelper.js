@@ -14,7 +14,7 @@ const loginResult = (response, err, user, jwt, secrets) => {
   if (err || !user)
     response.status(401).send({ 'error': 'Wrong credentials!' });
   else {
-    const showUser = ['firstName','secondName','email','avatar'];
+    const showUser = ['_id','firstName','secondName','email','avatar'];
     const token = jwt.sign({ 'userId': user._id }, secrets.jwt_key, { expiresIn: '2 days' });
     response.status(200).send({ 'token': token, 'user': R.pick(showUser, user) });
   }
