@@ -1,4 +1,3 @@
-const R = require('ramda');
 const jwt = require('jsonwebtoken');
 const secrets = require('../config/secrets');
 const User = require('../models/User');
@@ -34,8 +33,7 @@ const userActions = {
 
   login: (req, res) => {
     const user = req.body.user;
-    const showUser = ['firstName','secondName','email','avatar'];
-    User.findOne(user, (err, user) => loginResult(res, err, R.pick(showUser, user), jwt, secrets));
+    User.findOne(user, (err, user) => loginResult(res, err, user, jwt, secrets));
   },
 
 };
