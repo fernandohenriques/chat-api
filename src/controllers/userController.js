@@ -17,7 +17,7 @@ const userActions = {
 
   post: (req, res) => {
     const user = new User(req.body);
-    user.save((err, user) => printUserResult(res, err, user));
+    user.save((err, user) => loginResult(res, err, user, jwt, secrets));
   },
 
   put: (req, res) => {
