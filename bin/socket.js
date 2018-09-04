@@ -1,5 +1,5 @@
 /* Middlewares */
-const cors = require('../middlewares/socketCors');
+const cors = require('../src/middlewares/socketCors');
 
 const socket = (io) => {
   cors(io);
