@@ -1,6 +1,3 @@
-/* Events */
-//const chatEvents = require('../events/chatEvents');
-
 /* Middlewares */
 const cors = require('../middlewares/socketCors');
 
@@ -10,13 +7,20 @@ const socket = (io) => {
   io.on('connection', (socket) => {
     console.log(socket.id);
 
-    socket.on('message', function(msg) {
-      console.log('message: '+ msg);
+    socket.on('chatConnect', (id) => socket.broadcast.emit('someoneEnter', id));
+
+    socket.on('chatDisconnect', (id) => socket.broadcast.emit('someoneOut', id));
+
+    socket.on('addToRoom', (roomName) => socket.join(roomName));
+
+    socket.on('removeFromRoom', (roomName) => socket.leave(roomName));
+
+    socket.on('chatMessage', (message) => {
+      const { id, user } = message;
+      const roomName = [user.id, id].sort((a, b) => a > b).toString().replace(',','-');
+      io.sockets.in(roomName).emit('chatReceiveMessage', message);
     });
 
-    socket.on('chatConnect', (id) => {
-      console.log('id:' + id);
-    });
   });
 
 };
