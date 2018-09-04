@@ -18,7 +18,7 @@ const loginResult = (response, err, user, jwt, secrets) => {
     const token = jwt.sign({ 'userId': user._id }, secrets.jwt_key, { expiresIn: '2 days' });
     response.status(200).send({ 'token': token, 'user': R.pick(showUser, user) });
   }
-}
+};
 
 const getFullName = (user) => `${user.firstName} ${user.secondName}`;
 
