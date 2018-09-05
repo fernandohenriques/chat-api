@@ -17,8 +17,8 @@ const socket = (io) => {
 
     socket.on('chatMessage', (message) => {
       const { id, user } = message;
-      const roomName = [user.id, id].sort((a, b) => a > b).toString().replace(',','-');
-      io.sockets.in(roomName).emit('chatReceiveMessage', message);
+      socket.broadcast.emit('someoneEnter', user.id);
+      io.sockets.to(id).emit('chatReceiveMessage', message);
     });
 
   });
