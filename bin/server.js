@@ -1,4 +1,3 @@
-const http = require('http');
 const dotenv = require('dotenv');
 
 if (process.env.NODE_ENV !== 'production') {
@@ -7,14 +6,13 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const app = require('../src/app');
+const socket = require('./socket');
 const port = process.env.PORT || '3000';
 
-const socket = require('./socket');
-const socket_port = process.env.SOCKET_PORT || '4555';
-const server = http.createServer(app).listen(socket_port);
-const io = require('socket.io').listen(server);
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
 socket(io);
 
-app.listen(port, () => {
+http.listen(port, () => {
   console.log(`app listening on port ${port}`);
 });
