@@ -1,8 +1,10 @@
 const http = require('http');
 const dotenv = require('dotenv');
-const result = dotenv.config();
 
-if (result.error) throw result.error;
+if (process.env.NODE_ENV !== 'production') {
+  const result = dotenv.config();
+  if (result.error) throw result.error;
+}
 
 const app = require('../src/app');
 const port = process.env.PORT || '3000';
