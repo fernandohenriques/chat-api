@@ -1,5 +1,5 @@
 const cors = require('cors');
-const allowedOrigins = ['http://localhost:3000', 'http://chat.fernandohenriques.com.br'];
+const allowedOrigins = ['http://localhost:3000', 'https://henriques-chat.herokuapp.com'];
 
 const checkCors = cors({
   origin: (origin, callback) => {
