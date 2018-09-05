@@ -26,5 +26,8 @@
     "eslint": "^5.5.0",
     "eslint-plugin-node": "^7.0.1",
     "nodemon": "^1.18.4"
+  },
+  "engines": {
+    "node": "10.9.0"
   }
 }
