@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-Back-end poject of an open chat, written with NodeJS + Express + Socket.IO + Mongoose.
+Back-end project for a private chat, written with NodeJS + Express + Socket.IO + Mongoose.
 
 
 ### Pre requisites
@@ -29,7 +29,6 @@ cd chat-api/
 Create a file called .env
 Open this file and add this variables:
   - PORT -> Port to API
-  - SOCKET_PORT -> Port to Socket
   - MONGODB_URI ->  A MongoDB URI for database
 npm install
 npm start
